@@ -9,6 +9,7 @@ import { s3Storage } from '@payloadcms/storage-s3'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { AboutMeAsset, AboutMeDescription } from './collections/AboutMe'
+import { CurrentlyLearningSkill, LearnedSkill } from './collections/Skills'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -20,7 +21,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, AboutMeAsset, AboutMeDescription],
+  collections: [Users, Media, AboutMeAsset, AboutMeDescription, LearnedSkill, CurrentlyLearningSkill],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
