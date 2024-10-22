@@ -15,6 +15,8 @@ export interface Config {
     media: Media;
     'about-me-asset': AboutMeAsset;
     'about-me-description': AboutMeDescription;
+    'learned-skill-logos': LearnedSkillLogo;
+    'currently-learning-skill': CurrentlyLearningSkill;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -107,6 +109,31 @@ export interface AboutMeDescription {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "learned-skill-logos".
+ */
+export interface LearnedSkillLogo {
+  id: number;
+  skillOrder: number;
+  skillLogo: number | Media;
+  skillHref: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "currently-learning-skill".
+ */
+export interface CurrentlyLearningSkill {
+  id: number;
+  currentSkillName: string;
+  currentSkillLogo: number | Media;
+  currentSkillHref: string;
+  currentSkillDescription: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -127,6 +154,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'about-me-description';
         value: number | AboutMeDescription;
+      } | null)
+    | ({
+        relationTo: 'learned-skill-logos';
+        value: number | LearnedSkillLogo;
+      } | null)
+    | ({
+        relationTo: 'currently-learning-skill';
+        value: number | CurrentlyLearningSkill;
       } | null);
   globalSlug?: string | null;
   user: {
