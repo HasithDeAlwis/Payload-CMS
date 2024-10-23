@@ -17,6 +17,7 @@ export interface Config {
     'about-me-description': AboutMeDescription;
     'learned-skill-logos': LearnedSkillLogo;
     'currently-learning-skill': CurrentlyLearningSkill;
+    projects: Project;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -134,6 +135,22 @@ export interface CurrentlyLearningSkill {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: number;
+  title: string;
+  description: string;
+  sourceLink: string;
+  demoLink?: string | null;
+  readMoreLink?: string | null;
+  projectImage?: (number | null) | Media;
+  videoLink?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -162,6 +179,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'currently-learning-skill';
         value: number | CurrentlyLearningSkill;
+      } | null)
+    | ({
+        relationTo: 'projects';
+        value: number | Project;
       } | null);
   globalSlug?: string | null;
   user: {
