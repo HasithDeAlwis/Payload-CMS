@@ -36,6 +36,7 @@ export const AboutMeDescription: CollectionConfig = {
     read: () => true,
     create: () => true,
     delete: () => true,
+    update: () => true,
   },
   fields: [
     {
