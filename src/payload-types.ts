@@ -172,11 +172,12 @@ export interface BlogContent {
 export interface Blog {
   id: number;
   title: string;
-  'short-description': string;
+  byline: string;
   date: string;
   thumbnail: number | Media;
-  'blog-content': (number | BlogContent)[];
+  blogContent: (number | BlogContent)[];
   tags: (number | Tag)[];
+  technicalBlog?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -186,9 +187,9 @@ export interface Blog {
  */
 export interface Tag {
   id: number;
-  'tag-value': string;
-  'tag-text': string;
-  'is-technical'?: boolean | null;
+  tagValue: string;
+  tagText: string;
+  isTechnical?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
