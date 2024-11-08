@@ -18,6 +18,9 @@ export interface Config {
     'learned-skill-logos': LearnedSkillLogo;
     'currently-learning-skill': CurrentlyLearningSkill;
     projects: Project;
+    'blog-content': BlogContent;
+    blog: Blog;
+    tags: Tag;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -151,6 +154,46 @@ export interface Project {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-content".
+ */
+export interface BlogContent {
+  id: number;
+  header?: string | null;
+  content: string;
+  image?: (number | null) | Media;
+  caption?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog".
+ */
+export interface Blog {
+  id: number;
+  title: string;
+  'short-description': string;
+  date: string;
+  thumbnail: number | Media;
+  'blog-content': (number | BlogContent)[];
+  tags: (number | Tag)[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags".
+ */
+export interface Tag {
+  id: number;
+  'tag-value': string;
+  'tag-text': string;
+  'is-technical'?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -183,6 +226,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'projects';
         value: number | Project;
+      } | null)
+    | ({
+        relationTo: 'blog-content';
+        value: number | BlogContent;
+      } | null)
+    | ({
+        relationTo: 'blog';
+        value: number | Blog;
+      } | null)
+    | ({
+        relationTo: 'tags';
+        value: number | Tag;
       } | null);
   globalSlug?: string | null;
   user: {
