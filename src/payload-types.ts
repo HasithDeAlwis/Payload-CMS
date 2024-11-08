@@ -18,6 +18,9 @@ export interface Config {
     'learned-skill-logos': LearnedSkillLogo;
     'currently-learning-skill': CurrentlyLearningSkill;
     projects: Project;
+    'blog-content': BlogContent;
+    blog: Blog;
+    tags: Tag;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -151,6 +154,48 @@ export interface Project {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-content".
+ */
+export interface BlogContent {
+  id: number;
+  header?: string | null;
+  content: string;
+  image?: (number | null) | Media;
+  caption?: string | null;
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog".
+ */
+export interface Blog {
+  id: number;
+  title: string;
+  byline: string;
+  date: string;
+  thumbnail: number | Media;
+  blogContent: (number | BlogContent)[];
+  tags: (number | Tag)[];
+  technicalBlog?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags".
+ */
+export interface Tag {
+  id: number;
+  tagValue: string;
+  tagText: string;
+  isTechnical?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -183,6 +228,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'projects';
         value: number | Project;
+      } | null)
+    | ({
+        relationTo: 'blog-content';
+        value: number | BlogContent;
+      } | null)
+    | ({
+        relationTo: 'blog';
+        value: number | Blog;
+      } | null)
+    | ({
+        relationTo: 'tags';
+        value: number | Tag;
       } | null);
   globalSlug?: string | null;
   user: {
