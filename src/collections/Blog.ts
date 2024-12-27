@@ -1,3 +1,4 @@
+import { lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
 import type { CollectionConfig, CollectionSlug } from 'payload'
 export const Blog: CollectionConfig = {
   slug: 'blog',
@@ -40,6 +41,11 @@ export const Blog: CollectionConfig = {
         description: 'Blog thumbnail',
       },
       required: true,
+    },
+    {
+      name: 'slug',
+      type: 'text',
+      required: true
     },
     {
       name: 'blogContent',
@@ -101,6 +107,11 @@ export const BlogContent: CollectionConfig = {
       admin: {
         description: 'Enter the content of the blog here'
       }
+    },
+    {
+      name: 'paragraph',
+      type: 'richText',
+      required: true
     },
     {
       name: 'image',

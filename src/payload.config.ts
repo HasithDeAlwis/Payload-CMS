@@ -1,6 +1,8 @@
 // storage-adapter-import-placeholder
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import {
+  lexicalEditor
+} from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -24,7 +26,10 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, AboutMeAsset, AboutMeDescription, LearnedSkill, CurrentlyLearningSkill, Projects, BlogContent, Blog, Tags],
-  editor: lexicalEditor(),
+  editor: lexicalEditor(
+    {
+    }
+  ),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
@@ -41,7 +46,7 @@ export default buildConfig({
     s3Storage({
       collections: {
         media: {
-          prefix: process.env.NODE_ENV == 'production' ? 'media' : 'media-dev' ,
+          prefix: process.env.NODE_ENV == 'production' ? 'media' : 'media-dev',
         },
       },
       bucket: process.env.S3_BUCKET || '',
