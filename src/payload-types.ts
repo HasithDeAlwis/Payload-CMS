@@ -160,6 +160,21 @@ export interface BlogContent {
   id: number;
   header?: string | null;
   content: string;
+  paragraph: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   image?: (number | null) | Media;
   caption?: string | null;
   order: number;
@@ -176,6 +191,7 @@ export interface Blog {
   byline: string;
   date: string;
   thumbnail: number | Media;
+  slug: string;
   blogContent: (number | BlogContent)[];
   tags: (number | Tag)[];
   technicalBlog?: boolean | null;
