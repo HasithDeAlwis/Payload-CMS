@@ -2,10 +2,16 @@ import type { CollectionConfig } from 'payload'
 export const Tags: CollectionConfig = {
     slug: 'tags',
     access: {
-        read: () => true,
-        create: () => true,
-        delete: () => true,
-        update: () => true,
+     read: () => true,
+    create: ({ req: { user } }) => {
+        return Boolean(user)
+      },
+      delete: ({ req: { user } }) => {
+        return Boolean(user)
+      },
+      update: ({ req: { user } }) => {
+        return Boolean(user)
+      },
     },
     admin: {
         useAsTitle: 'tagText',

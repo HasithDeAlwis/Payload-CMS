@@ -1,13 +1,17 @@
-import { lexicalEditor, LinkFeature } from '@payloadcms/richtext-lexical'
 import type { CollectionConfig, CollectionSlug } from 'payload'
 export const Blog: CollectionConfig = {
   slug: 'blog',
   access: {
-    read: () => true,
-    create: () => true,
-    delete: () => true,
-    update: () => true,
-
+      read: () => true,
+      create: ({ req: { user } }) => {
+        return Boolean(user)
+      },
+      delete: ({ req: { user } }) => {
+        return Boolean(user)
+      },
+      update: ({ req: { user } }) => {
+        return Boolean(user)
+      },
   },
   labels: {
     singular: 'Blog',
@@ -84,12 +88,18 @@ export const Blog: CollectionConfig = {
 
 export const BlogContent: CollectionConfig = {
   slug: 'blog-content',
-  access: {
-    read: () => true,
-    create: () => true,
-    delete: () => true,
-    update: () => true,
-  },
+    access: {
+      read: () => true,
+      create: ({ req: { user } }) => {
+          return Boolean(user)
+        },
+        delete: ({ req: { user } }) => {
+          return Boolean(user)
+        },
+        update: ({ req: { user } }) => {
+          return Boolean(user)
+        },
+    },
   admin: {
     useAsTitle: 'header',
   },

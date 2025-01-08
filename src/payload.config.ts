@@ -25,6 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  serverURL: process.env.PAYLOAD_PUBLIC_EXTERNAL_SERVER_URL,
   collections: [Users, Media, AboutMeAsset, AboutMeDescription, LearnedSkill, CurrentlyLearningSkill, Projects, BlogContent, Blog, Tags],
   editor: lexicalEditor(
     {

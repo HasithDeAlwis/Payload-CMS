@@ -2,12 +2,18 @@ import { CollectionConfig } from "payload"
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
-  access: {
-    read: () => true,
-    create: () => true,
-    delete: () => true,
-    update: () => true,
-  },
+access: {
+      read: () => true,
+      create: ({ req: { user } }) => {
+          return Boolean(user)
+        },
+        delete: ({ req: { user } }) => {
+          return Boolean(user)
+        },
+        update: ({ req: { user } }) => {
+          return Boolean(user)
+        },
+    },
   labels: {
     singular: 'Project',
     plural: 'Projects',

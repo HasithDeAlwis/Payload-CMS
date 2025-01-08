@@ -4,9 +4,15 @@ export const LearnedSkill: CollectionConfig = {
     slug: 'learned-skill-logos',
     access: {
       read: () => true,
-      create: () => true,
-      delete: () => true,
-      update: () => true,
+      create: ({ req: { user } }) => {
+          return Boolean(user)
+        },
+        delete: ({ req: { user } }) => {
+          return Boolean(user)
+        },
+        update: ({ req: { user } }) => {
+          return Boolean(user)
+        },
     },
     fields: [
       {
@@ -42,9 +48,15 @@ export const LearnedSkill: CollectionConfig = {
     slug: 'currently-learning-skill',
     access: {
       read: () => true,
-      create: () => true,
-      delete: () => true,
-      update: () => true,
+      create: ({ req: { user } }) => {
+          return Boolean(user)
+        },
+        delete: ({ req: { user } }) => {
+          return Boolean(user)
+        },
+        update: ({ req: { user } }) => {
+          return Boolean(user)
+        },
     },
     fields: [
       {
