@@ -36,7 +36,6 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   cors: process.env.CORS_WHITELIST_ORIGINS ? process.env.CORS_WHITELIST_ORIGINS.split(',') : [],
-  csrf: process.env.CSRF_WHITELIST_ORIGINS ? process.env.CSRF_WHITELIST_ORIGINS.split(',') : [],
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
